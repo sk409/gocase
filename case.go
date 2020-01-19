@@ -1,6 +1,6 @@
 package gocase
 
-func lowerCamelCase(b []byte, golike bool) []byte {
+func LowerCamelCase(b []byte, golike bool) []byte {
 	b = upperCamelTransformer.lowerCamelCase(b)
 	if golike {
 		b = golikeTransformer.transform(b)
