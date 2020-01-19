@@ -8,3 +8,8 @@ func UpperCamelCase(b []byte, golike bool) []byte {
 	}
 	return b
 }
+
+func SnakeCase(b []byte) []byte {
+	b = upperCamelTransformer.snakeCase(b)
+	return b
+}

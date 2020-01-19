@@ -42,8 +42,18 @@ func (s *snake) upperCamelCase(b []byte) []byte {
 	return []byte(str)
 }
 
+type upperCamel struct {
+}
+
+func (u *upperCamel) snakeCase(b []byte) []byte {
+	regex := regexp.MustCompile("(.)([A-Z])")
+	snake := regex.ReplaceAll(b, []byte("${1}_${2}"))
+	return []byte(strings.ToLower(string(snake)))
+}
+
 var (
-	firstTransformer  = first{}
-	golikeTransformer = golike{}
-	snakeTransformer  = snake{}
+	firstTransformer      = first{}
+	golikeTransformer     = golike{}
+	snakeTransformer      = snake{}
+	upperCamelTransformer = upperCamel{}
 )
