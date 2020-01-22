@@ -13,7 +13,7 @@ func (f *first) lowerCamelCase(b []byte) []byte {
 		return []byte{}
 	}
 	str := string(b)
-	p := []string{"ID", "URL"}
+	p := []string{"ID", "URL", "SHA"}
 	for _, v := range p {
 		if strings.HasPrefix(str, v) {
 			l := strings.ToLower(v)
