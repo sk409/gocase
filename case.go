@@ -1,24 +1,28 @@
 package gocase
 
 func LowerCamelCase(b []byte, golike bool) []byte {
-	b = firstTransformer.lowerCamelCase(b)
-	b = upperCamelTransformer.lowerCamelCase(b)
-	if golike {
-		b = golikeTransformer.transform(b)
+	if !golike {
+		g := golikeTransformer{}
+		b = g.lowerCamelCase(b)
 	}
+	u := upperCamelTransformer{}
+	b = u.lowerCamelCase(b)
 	return b
 }
 
 func SnakeCase(b []byte) []byte {
-	b = upperCamelTransformer.snakeCase(b)
+	// b = upperCamelTransformer.snakeCase(b)
 	return b
 }
 
 func UpperCamelCase(b []byte, golike bool) []byte {
-	b = firstTransformer.upperCamelCase(b)
-	b = snakeTransformer.upperCamelCase(b)
+	// b = firstTransformer.upperCamelCase(b)
+	// b = snakeTransformer.upperCamelCase(b)
+	l := lowerCamelTransformer{}
+	b = l.upperCamelCase(b)
 	if golike {
-		b = golikeTransformer.transform(b)
+		g := golikeTransformer{}
+		b = g.upperCamelCase(b)
 	}
 	return b
 }
