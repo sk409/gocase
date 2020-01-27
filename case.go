@@ -11,7 +11,8 @@ func LowerCamelCase(b []byte, golike bool) []byte {
 }
 
 func SnakeCase(b []byte) []byte {
-	// b = upperCamelTransformer.snakeCase(b)
+	u := upperCamelTransformer{}
+	b = u.snakeCase(b)
 	return b
 }
 

@@ -154,7 +154,7 @@ type upperCamelTransformer struct {
 }
 
 func (u *upperCamelTransformer) lowerCamelCase(b []byte) []byte {
-	if len(b) <= 1 {
+	if len(b) == 0 {
 		return b
 	}
 	str := string(b)
@@ -168,11 +168,12 @@ func (u *upperCamelTransformer) lowerCamelCase(b []byte) []byte {
 			return []byte(l + str[len(v):])
 		}
 	}
+
 	return append(bytes.ToLower(b[0:1]), b[1:]...)
 }
 
 func (u *upperCamelTransformer) snakeCase(b []byte) []byte {
-	regex := regexp.MustCompile("(.)([A-Z])")
+	regex := regexp.MustCompile("([^A-Z])([A-Z])")
 	snake := regex.ReplaceAll(b, []byte("${1}_${2}"))
 	return []byte(strings.ToLower(string(snake)))
 }

@@ -57,3 +57,20 @@ func TestLowerCamelCase(t *testing.T) {
 		}
 	}
 }
+
+func TestSnakeCase(t *testing.T) {
+	fail := func(e, g string) {
+		t.Errorf("Failed to SnakeCase: Expected %s but got %s", e, g)
+	}
+	words := []string{"ID", "UserID", "userIdle", "commitSHA1"}
+	expectation := []string{"id", "user_id", "user_idle", "commit_sha1"}
+	for index, word := range words {
+		b := gocase.SnakeCase([]byte(word))
+		s := string(b)
+		e := expectation[index]
+		if s != e {
+			fail(e, s)
+			return
+		}
+	}
+}
